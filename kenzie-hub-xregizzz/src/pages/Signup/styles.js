@@ -26,7 +26,7 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
 
-    background: #212529;
+    background: var(--grey-3);
 
     div {
       display: grid;
@@ -40,7 +40,7 @@ export const Content = styled.div`
       line-height: 22px;
       letter-spacing: 0em;
       text-align: left;
-      color: #868e96;
+      color: var(--grey-1);
     }
 
     h2 {
@@ -49,7 +49,7 @@ export const Content = styled.div`
       font-weight: 700;
       font-size: 18px;
       line-height: 28px;
-      color: #f8f9fa;
+      color: var(--grey-0);
     }
   }
 
@@ -63,7 +63,7 @@ export const Content = styled.div`
     padding: 0px 16px 0px 16px;
     background: var(--grey-2);
     margin: 10px 0 10px 0px;
-    border: 1.2182px solid #343b41;
+    border: 1.2182px solid var(--grey-2);
   }
 
   label {
@@ -72,7 +72,7 @@ export const Content = styled.div`
     font-weight: 400;
     font-size: 12.182px;
     line-height: 0px;
-    color: #f8f9fa;
+    color: var(--grey-0);
     margin-bottom: 10px;
   }
 
@@ -82,7 +82,7 @@ export const Content = styled.div`
     font-weight: 400;
     font-size: 16.2426px;
     line-height: 26px;
-    color: #868e96;
+    color: var(--grey-1);
   }
 
   select {
@@ -91,6 +91,6 @@ export const Content = styled.div`
     font-weight: 400;
     font-size: 16.2426px;
     line-height: 26px;
-    color: #868e96;
+    color: var(--grey-1);
   }
 `;

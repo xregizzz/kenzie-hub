@@ -25,7 +25,7 @@ export const Content = styled.div`
     width: 369px;
     border-radius: 4px;
     padding: 42px, 22px, 42px, 22px;
-    background: #212529;
+    background: var(--grey-3);
 
     div {
       display: grid;
@@ -38,7 +38,7 @@ export const Content = styled.div`
       font-weight: 600;
       font-size: 12px;
       line-height: 18px;
-      color: #868e96;
+      color: var(--grey-1);
       margin-bottom: 10px;
     }
 
@@ -60,13 +60,13 @@ export const Content = styled.div`
     padding: 0px 16px 0px 16px;
     background: var(--grey-2);
     margin: 10px 0 10px 0px;
-    border: 1.22px solid #f8f9fa;
+    border: 1.22px solid var(--grey-0);
   }
 
   label {
     font-family: "Inter";
     font-weight: 400;
     font-size: 12.182px;
-    color: #f8f9fa;
+    color: var(--grey-0);
   }
 `;
