@@ -6,7 +6,7 @@ import Signup from "../pages/Signup";
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/Home">
+      <Route exact path="/home">
         <Home />
       </Route>
       <Route exact path="/">

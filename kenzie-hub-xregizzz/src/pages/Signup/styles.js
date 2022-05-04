@@ -14,19 +14,16 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  overflow-y: auto;
+  padding: 22px 22px 22px 22px;
+  background: var(--grey-3);
+  height: 800px;
 
   form {
-    height: 711px;
-    width: 370px;
-    border-radius: 4px;
-    padding: 42px 22px 42px 22px;
-
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
-
-    background: var(--grey-3);
 
     div {
       display: grid;

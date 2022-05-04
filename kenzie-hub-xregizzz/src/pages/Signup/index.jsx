@@ -3,25 +3,31 @@ import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import api from "../../services/api";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 function Signup() {
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required("Nome obrigatorio")
-      .matches(/^[aA-zZ\s]+$/, "Apenas letras são aceitas neste campo"),
-    email: yup.string().email("Email invalido").required("Email obrigatorio"),
-    bio: yup.string().required("Biografia obrigatoria"),
-    contact: yup.string().required("Contato obrigatorio"),
+      .required(" - Campo obrigatório")
+      .matches(/^[aA-zZ\s]+$/, " - Apenas letras são aceitas neste campo"),
+    email: yup
+      .string()
+      .email(" - Email invalido")
+      .required(" - Campo obrigatório"),
+    bio: yup.string().required(" - Campo obrigatório"),
+    contact: yup.string().required(" - Campo obrigatório"),
     password: yup
       .string()
-      .min(6, "Minimo 5 digitos")
-      .required("Senha obrigatoria"),
+      .min(6, " - Minimo 5 digitos")
+      .required(" - Campo obrigatório"),
     passwordConfirm: yup
       .string()
-      .required("Confirmacao de senha obrigatoria")
-      .oneOf([yup.ref("password"), null], "Senhas sao diferentes"),
-    course_module: yup.string().required("Campo obrigatorio"),
+      .required(" - Campo obrigatório")
+      .oneOf([yup.ref("password"), null], " - Senhas sao diferentes"),
+    course_module: yup.string().required(" - Campo obrigatório"),
   });
 
   const {
@@ -30,8 +36,24 @@ function Signup() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  function onSubmitFunction(data) {
-    console.log(data);
+  const history = useHistory();
+
+  function onSubmitFunction({
+    name,
+    email,
+    bio,
+    contact,
+    password,
+    course_module,
+  }) {
+    const user = { name, email, bio, contact, password, course_module };
+    api
+      .post("/users", user)
+      .then((response) => {
+        toast.success("Conta criada com sucesso!");
+        return history.push("/");
+      })
+      .catch((err) => toast.error("Ops! Algo deu errado"));
   }
 
   return (
@@ -46,69 +68,71 @@ function Signup() {
           <h2>Crie sua conta</h2>
           <span>Rapido e gratis, vamos nessa</span>
           <div>
-            <label>Nome</label>
+            <label>
+              Nome <span> {errors.name?.message}</span>
+            </label>
             <input
               name="name"
               type="text"
               placeholder="Digite aqui seu nome"
               {...register("name")}
             />
-            {errors.name?.message}
           </div>
           <div>
-            <label>Email</label>
+            <label>
+              Email <span>{errors.email?.message}</span>{" "}
+            </label>
             <input
               name="email"
               type="text"
               placeholder="Digite aqui seu email"
               {...register("email")}
             />
-            {errors.email?.message}
           </div>
-
           <div>
-            <label>Bio</label>
+            <label>
+              Bio <span>{errors.bio?.message}</span>
+            </label>
             <input
               name="bio"
               type="text"
               placeholder="Diga um pouco sobre voce"
               {...register("bio")}
             />
-            {errors.bio?.message}
           </div>
-
           <div>
-            <label>Contato</label>
+            <label>
+              Contato <span> {errors.contact?.message} </span>
+            </label>
             <input
               name="contact"
               type="text"
               placeholder="Telefone ou rede social"
               {...register("contact")}
             />
-            {errors.contact?.message}
           </div>
           <div>
-            <label>Senha</label>
+            <label>
+              Senha <span> {errors.password?.message}</span>
+            </label>
             <input
               name="password"
               type="password"
               placeholder="Digite aqui sua senha"
               {...register("password")}
             />
-            {errors.password?.message}
           </div>
-
           <div>
-            <label>Confirmar Senha</label>
+            <label>
+              Confirmar Senha <span>{errors.passwordConfirm?.message}</span>
+            </label>
             <input
               name="passwordConfirm"
               type="password"
               placeholder="Digite novamente sua senha"
               {...register("passwordConfirm")}
             />
-            {errors.passwordConfirm?.message}
           </div>
-
           <div>
             <label>Selecionar Modulo</label>
             <select name="course_module" {...register("course_module")}>
