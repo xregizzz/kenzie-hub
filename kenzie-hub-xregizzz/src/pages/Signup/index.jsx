@@ -5,9 +5,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
-function Signup() {
+function Signup({ authenticated }) {
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -54,6 +54,10 @@ function Signup() {
         return history.push("/");
       })
       .catch((err) => toast.error("Ops! Algo deu errado"));
+  }
+
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
   }
 
   return (

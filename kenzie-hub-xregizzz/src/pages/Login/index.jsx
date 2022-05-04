@@ -1,12 +1,13 @@
 import { Container, Content } from "./styles";
 import Button from "../../components/Button";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
-function Login() {
+function Login({ authenticated, setAuthenticated }) {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -30,16 +31,25 @@ function Login() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  function onSubmitFunction({ email, password }) {
-    const user = { email, password };
-    console.log(user);
+  function onSubmitFunction(data) {
+    console.log(data);
     api
-      .post("/sessions", user)
+      .post("/sessions", data)
       .then((response) => {
-        console.log(response);
-        return history.push("/home");
+        const { token, user } = response.data;
+        localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
+        localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
+
+
+        setAuthenticated(true);
+
+        return history.push("/dashboard");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error("Email ou senha invalidos"));
+  }
+
+  if (authenticated) {
+    return <Redirect to="/dashboard" />;
   }
 
   return (
