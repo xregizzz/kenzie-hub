@@ -10,7 +10,6 @@ export const Container = styled.div`
   border-radius: 4px;
   margin: 10px;
 
-
   h1 {
     color: var(--grey-0);
   }
@@ -21,5 +20,10 @@ export const Container = styled.div`
     font-weight: 400;
     font-size: 12.182px;
     line-height: 22px;
+  }
+
+  :hover {
+    background-color: var(--grey-2);
+    cursor: pointer;
   }
 `;

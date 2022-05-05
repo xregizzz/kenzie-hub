@@ -11,6 +11,7 @@ export const Container = styled.button`
   font-weight: 500;
   padding: 0px 22px 0px 22px;
   width: 326px;
+  margin-top: 15px;
 
   :hover {
     filter: brightness(0.9);

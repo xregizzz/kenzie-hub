@@ -10,20 +10,21 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  -webkit-box-align: center;
   align-items: center;
-  text-align: center;
-  overflow-y: auto;
-  padding: 22px 22px 22px 22px;
-  background: var(--grey-3);
-  height: 800px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 4px;
 
   form {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    height: 70vh;
+    overflow-y: scroll;
+    text-align: center;
+    background-color: rgb(33, 37, 41);
+    padding: 15px 35px 40px;
+    border-radius: 4px;
 
     div {
       display: grid;
@@ -44,9 +45,15 @@ export const Content = styled.div`
       font-family: "Inter";
       font-style: normal;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 28px;
       color: var(--grey-0);
+      margin: 20px;
+    }
+    p {
+      margin-bottom: 25px;
+      font-size: 13px;
+      font-weight: 100;
     }
   }
 
@@ -70,7 +77,7 @@ export const Content = styled.div`
     font-size: 12.182px;
     line-height: 0px;
     color: var(--grey-0);
-    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   input::placeholder {
@@ -89,5 +96,28 @@ export const Content = styled.div`
     font-size: 16.2426px;
     line-height: 26px;
     color: var(--grey-1);
+    margin-top: 20px;
+  }
+`;
+export const NavDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 230px;
+
+  margin: 50px;
+
+  button {
+    background-color: var(--grey-3);
+    border-radius: 4px;
+    border: none;
+    color: var(--grey-0);
+    font-size: 0.8rem;
+    padding: 10px 20px 10px 20px;
+  }
+
+  button:hover {
+    filter: opacity(0.9);
   }
 `;

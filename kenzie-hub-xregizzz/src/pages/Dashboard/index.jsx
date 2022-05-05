@@ -8,15 +8,23 @@ import api from "../../services/api";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import Header from "../../components/Header";
-import { Container, UlContainer, InputContainer, Navbar } from "./styles";
+import {
+  Container,
+  UlContainer,
+  InputContainer,
+  Navbar,
+  HeaderModal,
+} from "./styles";
 import { toast } from "react-toastify";
 import Modal from "react-modal/lib/components/Modal";
 
 function Dashboard({ authenticated, setAuthenticated }) {
   const [technologies, setTechnologies] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen2, setModalIsOpen2] = useState(false);
   const userId = useState(JSON.parse(localStorage.getItem("@KenzieHub:user")));
   const token = JSON.parse(localStorage.getItem("@KenzieHub:token"));
+  const user = JSON.parse(localStorage.getItem("@KenzieHub:user"));
 
   function handleOpenModal() {
     setModalIsOpen(true);
@@ -24,6 +32,14 @@ function Dashboard({ authenticated, setAuthenticated }) {
 
   function handleCloseModal() {
     setModalIsOpen(false);
+  }
+
+  function handleOpenModal2() {
+    setModalIsOpen2(true);
+  }
+
+  function handleCloseModal2() {
+    setModalIsOpen2(false);
   }
 
   function loadTechs() {
@@ -69,7 +85,6 @@ function Dashboard({ authenticated, setAuthenticated }) {
   if (!authenticated) {
     return <Redirect to="/" />;
   }
-  const user = JSON.parse(localStorage.getItem("@KenzieHub:user"));
 
   const customStyles = {
     content: {
@@ -96,16 +111,17 @@ function Dashboard({ authenticated, setAuthenticated }) {
         <h1>Tecnologias</h1>
         <button onClick={handleOpenModal}>+</button>
       </Navbar>
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
         style={customStyles}
       >
         <InputContainer onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <h2>Cadastrar Tecnologias</h2>
+          <HeaderModal>
+            <h2>Cadastrar Tecnologia</h2>
             <p onClick={handleCloseModal}>X</p>
-          </div>
+          </HeaderModal>
 
           <div>
             <label>
@@ -127,13 +143,28 @@ function Dashboard({ authenticated, setAuthenticated }) {
               <option value="Avançado">Avançado</option>
             </select>
           </div>
-          <Button type="submit">Cadastrar</Button>
+          <Button type="submit">Cadastrar Tecnologia</Button>
         </InputContainer>
+      </Modal>
+
+      <Modal
+        isOpen2={modalIsOpen2}
+        onRequestClose={handleCloseModal2}
+        style={customStyles}
+      >
+        <div>Ola</div>
+        <Button type="submit">Excluir</Button>
       </Modal>
 
       <UlContainer>
         {technologies.map((tech) => (
-          <Card key={tech.id} name={tech.title} status={tech.status} />
+          <Card
+            onClick={handleOpenModal2}
+            id={tech.id}
+            key={tech.id}
+            name={tech.title}
+            status={tech.status}
+          />
         ))}
       </UlContainer>
     </>

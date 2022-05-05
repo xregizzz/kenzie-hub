@@ -15,7 +15,6 @@ export const Container = styled.div`
 
   button {
     margin-right: 22%;
-    margin-right: 22%;
     background-color: var(--grey-3);
 
     border-radius: 4px;

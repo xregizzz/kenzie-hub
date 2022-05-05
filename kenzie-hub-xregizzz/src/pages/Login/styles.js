@@ -6,6 +6,11 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
 `;
 
 export const Content = styled.div`
@@ -14,6 +19,10 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  h2 {
+    font-size: 1rem;
+  }
 
   form {
     display: flex;

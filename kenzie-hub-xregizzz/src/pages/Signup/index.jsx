@@ -1,4 +1,4 @@
-import { Container, Content } from "./styles";
+import { Container, Content, NavDiv } from "./styles";
 import Button from "../../components/Button";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -62,7 +62,7 @@ function Signup({ authenticated }) {
 
   return (
     <Container>
-      <div>
+      <NavDiv>
         <h1>Kenzie Hub</h1>
         <button
           onClick={() => {
@@ -71,12 +71,12 @@ function Signup({ authenticated }) {
         >
           Voltar
         </button>
-      </div>
+      </NavDiv>
 
       <Content>
         <form onSubmit={handleSubmit(onSubmitFunction)}>
           <h2>Crie sua conta</h2>
-          <span>Rapido e gratis, vamos nessa</span>
+          <p>Rapido e gratis, vamos nessa</p>
           <div>
             <label>
               Nome <span> {errors.name?.message}</span>
