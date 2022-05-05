@@ -32,14 +32,12 @@ function Login({ authenticated, setAuthenticated }) {
   } = useForm({ resolver: yupResolver(schema) });
 
   function onSubmitFunction(data) {
-    console.log(data);
     api
       .post("/sessions", data)
       .then((response) => {
         const { token, user } = response.data;
         localStorage.setItem("@KenzieHub:token", JSON.stringify(token));
         localStorage.setItem("@KenzieHub:user", JSON.stringify(user));
-
 
         setAuthenticated(true);
 

@@ -64,7 +64,13 @@ function Signup({ authenticated }) {
     <Container>
       <div>
         <h1>Kenzie Hub</h1>
-        <button>Voltar</button>
+        <button
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Voltar
+        </button>
       </div>
 
       <Content>
